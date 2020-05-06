@@ -86,17 +86,17 @@ static constexpr float kInterAxleLength = 4.0;  // m was 4
 
 // Cost weights.
 static constexpr float kOmegaCostWeight = 5.0;  // was 500000
-static constexpr float kP1ACostWeight = 1e5;   // 500
-static constexpr float kP2ACostWeight = 1e2;   // 500
+static constexpr float kP1ACostWeight = 1e5;    // 500
+static constexpr float kP2ACostWeight = 1e2;    // 500
 static constexpr float kP3ACostWeight = 1e-1;   // 500
 
 static constexpr float kRouteProgressCostWeight = 1.0e2;
 static constexpr float kMinVCostWeight = 100.0;
 
-static constexpr float kLaneCostWeight = 25.0;
+static constexpr float kLaneCostWeight = 0.1;
 static constexpr float kLaneBoundaryCostWeight = 100.0;  // no longer used
 
-static constexpr float kMinProximity = 1.0;
+static constexpr float kMinProximity = 5.0;
 static constexpr float kP1ProximityCostWeight = 100.0;
 static constexpr float kP2ProximityCostWeight = 100.0;
 static constexpr float kP3ProximityCostWeight = 100.0;
@@ -341,6 +341,20 @@ ThreePlayerRacingExample::ThreePlayerRacingExample(const SolverParams& params) {
                                             "LaneLeftBoundary"));
   p3_cost.AddStateConstraint(p3_lane_r_constraint);
   p3_cost.AddStateConstraint(p3_lane_l_constraint);
+
+  // lane costs for middle lane
+  const std::shared_ptr<QuadraticPolyline2Cost> p1_lane_cost(
+      new QuadraticPolyline2Cost(kLaneCostWeight, outer_lane,
+                                 {kP1XIdx, kP1YIdx}, "LaneCenter"));
+  p1_cost.AddStateCost(p1_lane_cost);
+  const std::shared_ptr<QuadraticPolyline2Cost> p2_lane_cost(
+      new QuadraticPolyline2Cost(kLaneCostWeight, outer_lane,
+                                 {kP2XIdx, kP2YIdx}, "LaneCenter"));
+  p2_cost.AddStateCost(p2_lane_cost);
+  const std::shared_ptr<QuadraticPolyline2Cost> p3_lane_cost(
+      new QuadraticPolyline2Cost(kLaneCostWeight, outer_lane,
+                                 {kP3XIdx, kP3YIdx}, "LaneCenter"));
+  p3_cost.AddStateCost(p3_lane_cost);
 
   // incentivize progress
   const auto p1_nominal_v_cost = std::make_shared<QuadraticCost>(
