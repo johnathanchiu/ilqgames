@@ -51,42 +51,46 @@ PointList2 RacingLaneCenter(float X_init, float Y_init,
                             float side_len, float turn_rad,
                             float kNumPointsInArc) {
 
-float root_angle = (M_PI)/kNumPointsInArc;
-std::cout<<root_angle<<std::endl;
-std::cout<<kNumPointsInArc<<std::endl;
-// Radius of roundabout and lane half width.
-//setup polyline points from track parameters
-//first straight-away, directly in front of initial car locations
-
-
-  //initialize point list with initial point and end point of first straight-away
-  //std::cout<<X_init<<" "<<Y_init<<std::endl;
-  PointList2 points;
-
-  points.push_back(Point2(X_init,Y_init));
-  points.push_back(Point2(X_init,Y_init+side_len));
-
-  for (size_t ii=1; ii<kNumPointsInArc; ii++){
-  //for top turn
-      points.push_back(Point2(X_init-turn_rad + turn_rad*cos(ii*root_angle),
-        Y_init+side_len+turn_rad*sin(ii*root_angle)));
-  }
-  //insert beginning and end of straight-away 2 
-  points.push_back(Point2(X_init-2*turn_rad,Y_init+side_len));
-  points.push_back(Point2(X_init-2*turn_rad,Y_init));
-  
-  for (size_t ii=1; ii<kNumPointsInArc; ii++){
-
-  //for top turn
-      points.push_back(Point2(X_init-turn_rad+turn_rad*cos(ii*root_angle+M_PI),
-        Y_init+turn_rad*sin(ii*root_angle+M_PI)));
-  }
-
-   //points.pop_back();
-
-  //for(size_t ii=0; ii=points.size(); ii++){
-   //std::cout<<"x= "<<points[ii](0)<<" y= "<<points[ii](1)<<std::endl;
-  //}
-  std::cout<<"yo!"<<std::endl;
+  return PointList2({Point2(X_init, Y_init), Point2(X_init, Y_init + 1000.0)});
 }
+
+// float root_angle = (M_PI)/kNumPointsInArc;
+// std::cout<<root_angle<<std::endl;
+// std::cout<<kNumPointsInArc<<std::endl;
+// // Radius of roundabout and lane half width.
+// //setup polyline points from track parameters
+// //first straight-away, directly in front of initial car locations
+
+
+//   //initialize point list with initial point and end point of first straight-away
+//   //std::cout<<X_init<<" "<<Y_init<<std::endl;
+//   PointList2 points;
+
+//   points.push_back(Point2(X_init,Y_init));
+//   points.push_back(Point2(X_init,Y_init+side_len));
+
+//   for (size_t ii=1; ii<kNumPointsInArc; ii++){
+//   //for top turn
+//       points.push_back(Point2(X_init-turn_rad + turn_rad*cos(ii*root_angle),
+//         Y_init+side_len+turn_rad*sin(ii*root_angle)));
+//   }
+//   //insert beginning and end of straight-away 2
+//   points.push_back(Point2(X_init-2*turn_rad,Y_init+side_len));
+//   points.push_back(Point2(X_init-2*turn_rad,Y_init));
+
+//   for (size_t ii=1; ii<kNumPointsInArc; ii++){
+
+//   //for top turn
+//       points.push_back(Point2(X_init-turn_rad+turn_rad*cos(ii*root_angle+M_PI),
+//         Y_init+turn_rad*sin(ii*root_angle+M_PI)));
+//   }
+
+//    //points.pop_back();
+
+//   for(size_t ii=0; ii<points.size(); ii++){
+//    std::cout<<"x= "<<points[ii](0)<<" y= "<<points[ii](1)<<std::endl;
+//   }
+//   std::cout<<"yo!"<<std::endl;
+//   return points;
+// }
 }  // namespace ilqgames
