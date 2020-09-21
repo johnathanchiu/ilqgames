@@ -119,3 +119,7 @@ ENV/
 # ccls
 .ccls-cache/
 compile_commands.json
+
+# xcode-project
+.xcode
+xcode

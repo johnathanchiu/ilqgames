@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.7)
+cmake_minimum_required(VERSION 2.8.12)
 project(ilqgames C CXX)
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
@@ -43,11 +43,28 @@ install(TARGETS ilqgames
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib)
 
+
+
+### EXECUTABLE BUILD IN EXAMPLES ###
 # Set up output directory for executables.
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin/)
+# set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin/)
 
 # Find and build executables.
-add_subdirectory(exec)
+# add_subdirectory(exec)
+### EXECUTABLE BUILD IN EXAMPLES ###
+
+
+
+### XPLANE SIMULATOR CONTROLLER BUILD ### 
+
+# Set up output directory for executables.
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/sims/)
+
+# build executable for xplane simulator
+add_subdirectory(sims) 
+
+### XPLANE SIMULATOR CONTROLLER BUILD ###
+
 
 # Find and build tests.
 if (BUILD_TESTS)
