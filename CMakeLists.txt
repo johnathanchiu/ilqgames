@@ -51,19 +51,16 @@ install(TARGETS ilqgames
 
 # Find and build executables.
 # add_subdirectory(exec)
-### EXECUTABLE BUILD IN EXAMPLES ###
 
 
 
-### XPLANE SIMULATOR CONTROLLER BUILD ### 
+### PYBIND-SIMULATOR BUILD ### 
 
-# Set up output directory for executables.
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/sims/)
+# use python3
+find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 
 # build executable for xplane simulator
-add_subdirectory(sims) 
-
-### XPLANE SIMULATOR CONTROLLER BUILD ###
+add_subdirectory(simulator) 
 
 
 # Find and build tests.
