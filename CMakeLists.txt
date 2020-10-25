@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 2.8.12)
 project(ilqgames C CXX)
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+set(CMAKE_CXX_STANDARD 17)
 
 # Build options.
-option(BUILD_TESTS "Build tests" ON)
-option(BUILD_DOCUMENTATION "Build documentation" ON)
+option(BUILD_TESTS "Build tests" OFF)
+option(BUILD_DOCUMENTATION "Build documentation" OFF)
 
 # Add cmake modules.
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
@@ -39,10 +40,9 @@ file(GLOB_RECURSE ilqgames_srcs ${CMAKE_SOURCE_DIR}/src/*.cpp)
 add_library(ilqgames ${ilqgames_srcs})
 
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/ilqgames DESTINATION include/ilqgames)
-install(TARGETS ilqgames
-  LIBRARY DESTINATION lib
-  ARCHIVE DESTINATION lib)
-
+install(TARGETS ilqgames LIBRARY 
+	DESTINATION lib 
+	ARCHIVE DESTINATION lib)
 
 
 ### EXECUTABLE BUILD IN EXAMPLES ###
@@ -54,13 +54,13 @@ install(TARGETS ilqgames
 
 
 
-### PYBIND-SIMULATOR BUILD ### 
+### PYBIND-SIMULATOR BUILD ###
 
 # use python3
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 
 # build executable for xplane simulator
-add_subdirectory(simulator) 
+add_subdirectory(simulator)
 
 
 # Find and build tests.
