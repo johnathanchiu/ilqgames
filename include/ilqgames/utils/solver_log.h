@@ -56,7 +56,7 @@ namespace ilqgames {
 // Default experiment name to use.
 std::string DefaultExperimentName();
 
-class SolverLog : private Uncopyable {
+class SolverLog {
  public:
   ~SolverLog() {}
   explicit SolverLog(Time time_step) : time_step_(time_step) {}
