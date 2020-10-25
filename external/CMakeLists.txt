@@ -7,7 +7,8 @@ if (BUILD_TESTS)
   add_subdirectory(glfw)
   include_directories(${glfw_SOURCE_DIR} ${glfw_INCLUDE_DIR})
 
-  # DearImGUI for graphical interfaces.
-  add_subdirectory(imgui)
-  include_directories(${imgui_SOURCE_DIR} ${imgui_INCLUDE_DIR})
 endif()
+
+# DearImGUI for graphical interfaces.
+add_subdirectory(imgui)
+include_directories(${imgui_SOURCE_DIR} ${imgui_INCLUDE_DIR})
