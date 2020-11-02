@@ -57,9 +57,18 @@ throttle_dref = "sim/flightmodel/engine/ENGN_thro"
 #quaternion = quaternion_for(theta, phi, math.radians(runwayHeading + 180))
 #xp_client.sendDREF("sim/flightmodel/position/q", quaternion)
 
+xp_client.sendDREFs(["sim/weather/runway_friction",
+                     "sim/weather/wind_direction_degt[0]",
+                     "sim/weather/wind_speed_kt[0]"],
+                    [2, 0, 300])
+                    
+
+time.sleep(0.1)
+
 # release park brake
 xp_client.sendDREF("sim/flightmodel/controls/parkbrake", 0)
-time.sleep(0.1)
+
+time.sleep(0.5)
 
 state = 0
 
@@ -81,10 +90,10 @@ for i in range(1000):
     
     # send controls to xplane
     heading, velocity = headings[state], velocities[state]
-    
-    print(runwayHeading + heading, velocity)
 
     heading_err = compute_heading_error(runwayHeading + heading, psi)
+    
+#    print(heading_err, velocity)
     control(xp_client, velocity, gs, throttle, heading_err)
     state += 1
     

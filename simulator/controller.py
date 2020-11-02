@@ -2,7 +2,7 @@ import math
     
 
 thr_gain = 0.4  # gain for plane throttle
-he_gain = 0.6 # gain for heading error
+he_gain = 0.65 # gain for heading error
 
 def control(xplane, dv, rv, rt, heading_error):
     '''

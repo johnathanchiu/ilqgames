@@ -40,7 +40,7 @@ static constexpr float kProximityCostWeight = 100.0;
 
 // Nominal speed.
 // Step 2. Try changing these.
-static constexpr float kP1NominalV = 8.0;  // m/s
+static constexpr float kP1NominalV = 27.8;  // m/s
 
 // Initial state.
 static constexpr float kP1InitialX = -25163.9477;    // m
